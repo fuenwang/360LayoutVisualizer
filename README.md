@@ -7,9 +7,9 @@ First, install the corresponding packages with the following command.
 ```bash
 pip install -r requirements.txt
 ```
-Then, run the script for visualization.
+Then, run the script for the visualization of our provided example.
 ```bash
-python visualizer.py --img YOUR_PANORAMA --json YOUR_LAYOUT.json
+python visualizer.py --img src/example.jpg  --json src/example.json
 ```
 You can use mouse and keyboard to control the camera.
 ```yaml
