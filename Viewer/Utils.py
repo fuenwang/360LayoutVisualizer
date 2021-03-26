@@ -156,9 +156,9 @@ def OldFormat2Mine(label):
     xyz *= scale
     
     data = {
-            'cameraHeight': label['cameraHeight'],
-            'cameraCeilingHeight': label['cameraCeilingHeight'],
-            'layoutHeight': label['layoutHeight'],
+            'cameraHeight': scale*label['cameraHeight'],
+            'cameraCeilingHeight': scale*label['cameraCeilingHeight'],
+            'layoutHeight': scale*label['layoutHeight'],
             'points': xyz.tolist(),
             'order': point_idxs
         }
