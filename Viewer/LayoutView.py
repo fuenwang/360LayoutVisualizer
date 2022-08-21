@@ -176,11 +176,11 @@ class GLWindow(QOpenGLWidget):
         self.ball = ArcBall.ArcBallT(self.width, self.height)
         glViewport(0, 0, width, height)
         viewportAspect = float(width) / float(height)
-        projection = glm.perspective(90.0/180.0*np.pi, viewportAspect, 0.1, 1000.0);
+        projection = glm.perspective(90.0/180.0*np.pi, viewportAspect, 0.1, 100.0);
         view = glm.lookAt(self.cam_pos,    self.cam_tgt,   glm.vec3(0, 0, 1))
 
-        self.mat_proj = np.asarray(projection)
-        self.mat_view = np.asarray(view)
+        self.mat_proj = np.asarray(projection).astype(np.float32).T
+        self.mat_view = np.asarray(view).astype(np.float32).T
 
     def paintGL(self):
         if self.first_time:
@@ -280,7 +280,7 @@ class GLWindow(QOpenGLWidget):
             self.cam_pos[0] += step
             self.cam_tgt[0] += step
 
-        self.mat_view = np.asarray(glm.lookAt(self.cam_pos, self.cam_tgt, glm.vec3(0, 0, 1)))
+        self.mat_view = np.asarray(glm.lookAt(self.cam_pos, self.cam_tgt, glm.vec3(0, 0, 1))).T
         self.update()
 
     def enterEvent(self, event):
@@ -290,7 +290,7 @@ class GLWindow(QOpenGLWidget):
         numAngle = float(event.angleDelta().y()) / 120
         self.cam_pos[1] += numAngle
         if self.cam_pos[1] > -1: self.cam_pos[1] = -1
-        self.mat_view = np.asarray(glm.lookAt(self.cam_pos, self.cam_tgt, glm.vec3(0, 0, 1)))
+        self.mat_view = np.asarray(glm.lookAt(self.cam_pos, self.cam_tgt, glm.vec3(0, 0, 1))).T
         self.update()
 
     
